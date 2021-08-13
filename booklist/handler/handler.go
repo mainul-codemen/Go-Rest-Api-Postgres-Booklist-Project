@@ -28,5 +28,8 @@ func NewServer(st *postgres.Storage)(*mux.Router,error){
 	r.HandleFunc("/books", s.updateBook).Methods("PUT")
 	r.HandleFunc("/books/{id}", s.removeBook).Methods("DELETE")
 
+
+	r.HandleFunc("/error",s.error).Methods("GET")
+
 	return r,nil
 }

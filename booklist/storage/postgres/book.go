@@ -2,8 +2,9 @@ package postgres
 
 import (
 	"booklist/storage"
+	"database/sql"
+	"fmt"
 	"log"
-	"strconv"
 )
 
 const e = `
@@ -63,12 +64,41 @@ FROM book
 WHERE book.id = $1
 `
 
-func (s *Storage) GetDataById(id string) (storage.Book, error) {
-	i, err := strconv.ParseInt(id, 10, 64)
-	if err != nil {
-		log.Println("Unable to parse String to integer")
-	}
+func (s *Storage) GetDataById(id int64) (storage.Book, error) {
 	jason := storage.Book{}
-	err = s.db.Get(&jason, selectByIdQuery, i)
+	err := s.db.Get(&jason, selectByIdQuery, id)
 	return jason, err
+}
+
+const update = `
+	UPDATE 
+		book 
+	SET 
+
+		title=:title,
+		author=:author,
+		year=:year
+
+	WHERE 
+		id =: id`
+
+func (s *Storage) UpdateBook(b storage.Book) (sql.Result,error){
+	res, err := s.db.NamedExec(update, b)
+	log.Println("----------------------------------> ",res)
+	if err != nil {
+		log.Println("Unable to update data")
+	}
+
+	fmt.Println("------>", res)
+	return res,err
+}
+
+func (s *Storage) DeleteDataById(id int) (int64, error) {
+	fmt.Println("what is the id ===  ??? === ",id)
+	result, err := s.db.Exec("delete from book where id = $1", id)
+	if err != nil {
+		return 0, err
+	} else {
+		return result.RowsAffected()
+	}
 }
