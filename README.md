@@ -62,9 +62,10 @@ func getBook(w http.ResponseWriter, r \*http.Request) {
                 json.NewEncoder(w).Encode(&book)
             }
         }
+
 }
 
-func addBook(w http.ResponseWriter, r \*http.Request) {
+func addBook(w http.ResponseWriter, r *http.Request) {
     var book Book
     // decode data from browser
     _ = json.NewDecoder(r.Body).Decode(&book)
