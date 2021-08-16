@@ -1,5 +1,39 @@
 # Go-Rest-Api-Postgres-Booklist-Project
 
+### DockerFile
+
+docker container ls
+
+docker image ls
+
+docker build -t go-rest-api-booklist
+
+docker run -8080:8000 go-rest-api-booklist
+
+docker run --name postgres12 -p 5432:5432 -e POSTGRES_PASSWORD=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+
+```yml
+FROM golang:latest
+
+LABEL maintainer="Mainul Hasan"
+
+WORKDIR /app
+
+COPY go.mod
+
+COPY go.sum
+
+RUN go mod download
+
+COPY . .
+
+ENV PORT 8000
+
+RUN go build
+
+CMD["/.Go-Rest-Api-Postgres-Booklist-Project"]
+```
+
 ## All in one file :
 
 ```go
