@@ -31,7 +31,7 @@ ENV PORT 8000
 
 RUN go build
 
-CMD["/.Go-Rest-Api-Postgres-Booklist-Project"]
+CMD["./Go-Rest-Api-Postgres-Booklist-Project"]
 ```
 
 ## All in one file :

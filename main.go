@@ -3,12 +3,14 @@ package main
 import (
 	"Go-Rest-Api-Postgres-Booklist-Project/handler"
 	"Go-Rest-Api-Postgres-Booklist-Project/storage/postgres"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
+	fmt.Println("Welcome ! Be patient ... it is Connecting")
 	dbString := newDBFromConfig()
 	store, err := postgres.NewStorage(dbString)
 	if err != nil {
@@ -31,12 +33,23 @@ func main() {
 }
 
 func newDBFromConfig() string {
-	dbParams := " " + "user=postgres"
-	dbParams += " " + "host=localhost"
-	dbParams += " " + "port=5432"
+	dbParams := " " + "user=user"
+	dbParams += " " + "host=host.docker.internal"
+	dbParams += " " + "port=5430"
 	dbParams += " " + "dbname=booklist"
 	dbParams += " " + "password=password"
 	dbParams += " " + "sslmode=disable"
 
 	return dbParams
 }
+
+// func newDBFromConfig() string {
+// 	dbParams := " " + "user=postgres"
+// 	dbParams += " " + "host=localhost"
+// 	dbParams += " " + "port=5432"
+// 	dbParams += " " + "dbname=booklist"
+// 	dbParams += " " + "password=secret"
+// 	dbParams += " " + "sslmode=disable"
+
+// 	return dbParams
+// }
