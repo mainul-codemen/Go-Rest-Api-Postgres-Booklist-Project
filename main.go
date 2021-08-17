@@ -32,24 +32,24 @@ func main() {
 
 }
 
+// func newDBFromConfig() string {
+// 	dbParams := " " + "user=postgres"
+// 	dbParams += " " + "host=postgres"
+// 	dbParams += " " + "port=5432"
+// 	dbParams += " " + "dbname=booklist"
+// 	dbParams += " " + "password=password"
+// 	dbParams += " " + "sslmode=disable"
+
+// 	return dbParams
+// }
+
 func newDBFromConfig() string {
-	dbParams := " " + "user=user"
-	dbParams += " " + "host=host.docker.internal"
-	dbParams += " " + "port=5430"
+	dbParams := " " + "user=postgres"
+	dbParams += " " + "host=localhost"
+	dbParams += " " + "port=5432"
 	dbParams += " " + "dbname=booklist"
 	dbParams += " " + "password=password"
 	dbParams += " " + "sslmode=disable"
 
 	return dbParams
 }
-
-// func newDBFromConfig() string {
-// 	dbParams := " " + "user=postgres"
-// 	dbParams += " " + "host=localhost"
-// 	dbParams += " " + "port=5432"
-// 	dbParams += " " + "dbname=booklist"
-// 	dbParams += " " + "password=secret"
-// 	dbParams += " " + "sslmode=disable"
-
-// 	return dbParams
-// }
